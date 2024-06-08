@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import { connectDB } from './utils/feature.js'
 import router from './routes/todo.js'
+import morgan from 'morgan'
 
 dotenv.config()
 
@@ -11,6 +12,8 @@ const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors())
+
+app.use(morgan('dev'))
 
 connectDB({ url: process.env.MONGO_URL })
 
